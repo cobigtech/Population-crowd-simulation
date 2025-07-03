@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import { SimulationEngine } from '../utils/simulation';
-import { SimulationConfig, Vector2D } from '../types/simulation';
+import { SimulationConfig } from '../types/simulation';
 import { Vector } from '../utils/vector';
 
 interface SimulationCanvasProps {
   config: SimulationConfig;
-  onStatsUpdate: (stats: any) => void;
+  onStatsUpdate: (stats: unknown) => void;
 }
 
 export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({ config, onStatsUpdate }) => {
@@ -32,7 +32,6 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({ config, onSt
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const deltaTime = timestamp - lastTimeRef.current;
     lastTimeRef.current = timestamp;
 
     // Clear canvas with subtle background
