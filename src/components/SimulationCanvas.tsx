@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import { SimulationEngine } from '../utils/simulation';
-import { SimulationConfig } from '../types/simulation';
+import { SimulationConfig, SimulationStats } from '../types/simulation';
 import { Vector } from '../utils/vector';
 
 interface SimulationCanvasProps {
   config: SimulationConfig;
-  onStatsUpdate: (stats: unknown) => void;
+  onStatsUpdate: (stats: SimulationStats) => void;
 }
 
 export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({ config, onStatsUpdate }) => {
