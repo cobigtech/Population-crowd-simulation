@@ -62,11 +62,11 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-blue-600 rounded-lg">
-              <Users className="w-6 h-6 text-white" />
+              <Users className="w-10 h-10 text-white" />
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-white">Population Crowd Simulation</h1>
-              <p className="text-slate-400 text-sm">
+            <div className='flex-row '>
+              <h1 className="text-4xl font-bold text-white">Population Crowd Simulation</h1>
+              <p className="text-slate-400 text-lg">
                 Interactive flocking behavior with realistic crowd dynamics
               </p>
             </div>

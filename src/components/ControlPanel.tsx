@@ -53,12 +53,12 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
           onClick={onToggleRunning}
           className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-colors ${
             isRunning
-              ? 'bg-red-600 hover:bg-red-700 text-white'
-              : 'bg-green-600 hover:bg-green-700 text-white'
+              ? 'bg-green-600 hover:bg-green-700 text-white'
+              : 'bg-red-600 hover:bg-red-700 text-white'
           }`}
         >
-          {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-          {isRunning ? 'Pause' : 'Play'}
+          {isRunning ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
+          {isRunning ? 'Play' : 'Pause'}
         </button>
         
         <button
