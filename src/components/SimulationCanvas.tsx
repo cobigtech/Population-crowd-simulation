@@ -12,7 +12,6 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({ config, onSt
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef<SimulationEngine | null>(null);
   const animationRef = useRef<number>();
-  const lastTimeRef = useRef<number>(0);
 
   const initializeEngine = useCallback(() => {
     if (!canvasRef.current) return;
@@ -31,8 +30,6 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({ config, onSt
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-
-    lastTimeRef.current = timestamp;
 
     // Clear canvas with subtle background
     ctx.fillStyle = '#0F172A';
