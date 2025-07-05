@@ -1,6 +1,7 @@
 import React from 'react';
 import { Settings, Play, Pause, RotateCcw, Eye, EyeOff } from 'lucide-react';
 import { SimulationConfig } from '../types/simulation';
+import { getTranslation } from '../utils/translations';
 
 interface ControlPanelProps {
   config: SimulationConfig;
@@ -44,7 +45,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
     <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 space-y-6">
       <div className="flex items-center gap-3 text-white">
         <Settings className="w-5 h-5 text-blue-400" />
-        <h2 className="text-lg font-semibold">Simulation Controls</h2>
+        <h2 className="text-lg font-semibold">{getTranslation(config.language, 'simulationControls')}</h2>
       </div>
 
       {/* Playback Controls */}
@@ -53,12 +54,12 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
           onClick={onToggleRunning}
           className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-colors ${
             isRunning
-              ? 'bg-green-600 hover:bg-green-700 text-white'
-              : 'bg-red-600 hover:bg-red-700 text-white'
+              ? 'bg-red-600 hover:bg-red-700 text-white'
+              : 'bg-green-600 hover:bg-green-700 text-white'
           }`}
         >
-          {isRunning ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
-          {isRunning ? 'Play' : 'Pause'}
+          {isRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+          {isRunning ? getTranslation(config.language, 'pause') : getTranslation(config.language, 'play')}
         </button>
         
         <button
@@ -66,21 +67,21 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
           className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-600 hover:bg-slate-700 text-white rounded-lg transition-colors"
         >
           <RotateCcw className="w-4 h-4" />
-          Reset
+          {getTranslation(config.language, 'reset')}
         </button>
         
         <button
           onClick={onClearObstacles}
           className="flex items-center justify-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors"
         >
-          Clear
+          {getTranslation(config.language, 'clear')}
         </button>
       </div>
 
       {/* Simulation Mode */}
       <div>
         <label className="block text-sm font-medium text-slate-300 mb-2">
-          Simulation Mode
+          {getTranslation(config.language, 'simulationMode')}
         </label>
         <div className="grid grid-cols-3 gap-2">
           {(['normal', 'panic', 'gathering'] as const).map(mode => (
@@ -93,7 +94,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
                   : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
               }`}
             >
-              {mode.charAt(0).toUpperCase() + mode.slice(1)}
+              {getTranslation(config.language, mode)}
             </button>
           ))}
         </div>
@@ -102,7 +103,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
       {/* Population Size */}
       <div>
         <label className="block text-sm font-medium text-slate-300 mb-2">
-          Population Size: {config.populationSize}
+          {getTranslation(config.language, 'populationSize')}: {config.populationSize}
         </label>
         <input
           type="range"
@@ -116,11 +117,11 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
       {/* Flocking Parameters */}
       <div className="space-y-4">
-        <h3 className="text-sm font-medium text-slate-300">Flocking Behavior</h3>
+        <h3 className="text-sm font-medium text-slate-300">{getTranslation(config.language, 'flockingBehavior')}</h3>
         
         <div>
           <label className="block text-xs text-slate-400 mb-1">
-            Separation Distance: {config.separationRadius.toFixed(1)}
+            {getTranslation(config.language, 'separationDistance')}: {config.separationRadius.toFixed(1)}
           </label>
           <input
             type="range"
@@ -135,7 +136,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
         <div>
           <label className="block text-xs text-slate-400 mb-1">
-            Alignment Distance: {config.alignmentRadius.toFixed(1)}
+            {getTranslation(config.language, 'alignmentDistance')}: {config.alignmentRadius.toFixed(1)}
           </label>
           <input
             type="range"
@@ -150,7 +151,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
         <div>
           <label className="block text-xs text-slate-400 mb-1">
-            Cohesion Distance: {config.cohesionRadius.toFixed(1)}
+            {getTranslation(config.language, 'cohesionDistance')}: {config.cohesionRadius.toFixed(1)}
           </label>
           <input
             type="range"
@@ -166,11 +167,11 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
       {/* Force Weights */}
       <div className="space-y-4">
-        <h3 className="text-sm font-medium text-slate-300">Force Weights</h3>
+        <h3 className="text-sm font-medium text-slate-300">{getTranslation(config.language, 'forceWeights')}</h3>
         
         <div>
           <label className="block text-xs text-slate-400 mb-1">
-            Separation: {config.separationWeight.toFixed(1)}
+            {getTranslation(config.language, 'separation')}: {config.separationWeight.toFixed(1)}
           </label>
           <input
             type="range"
@@ -185,7 +186,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
         <div>
           <label className="block text-xs text-slate-400 mb-1">
-            Alignment: {config.alignmentWeight.toFixed(1)}
+            {getTranslation(config.language, 'alignment')}: {config.alignmentWeight.toFixed(1)}
           </label>
           <input
             type="range"
@@ -200,7 +201,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
         <div>
           <label className="block text-xs text-slate-400 mb-1">
-            Cohesion: {config.cohesionWeight.toFixed(1)}
+            {getTranslation(config.language, 'cohesion')}: {config.cohesionWeight.toFixed(1)}
           </label>
           <input
             type="range"
@@ -216,11 +217,11 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
       {/* Speed Controls */}
       <div className="space-y-4">
-        <h3 className="text-sm font-medium text-slate-300">Speed & Force</h3>
+        <h3 className="text-sm font-medium text-slate-300">{getTranslation(config.language, 'speedForce')}</h3>
         
         <div>
           <label className="block text-xs text-slate-400 mb-1">
-            Max Speed: {config.maxSpeed.toFixed(1)}
+            {getTranslation(config.language, 'maxSpeed')}: {config.maxSpeed.toFixed(1)}
           </label>
           <input
             type="range"
@@ -235,7 +236,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
         <div>
           <label className="block text-xs text-slate-400 mb-1">
-            Max Force: {config.maxForce.toFixed(2)}
+            {getTranslation(config.language, 'maxForce')}: {config.maxForce.toFixed(2)}
           </label>
           <input
             type="range"
@@ -251,10 +252,10 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
       {/* Visual Options */}
       <div className="space-y-3">
-        <h3 className="text-sm font-medium text-slate-300">Visual Options</h3>
+        <h3 className="text-sm font-medium text-slate-300">{getTranslation(config.language, 'visualOptions')}</h3>
         
         <div className="flex items-center justify-between">
-          <span className="text-sm text-slate-400">Show Trails</span>
+          <span className="text-sm text-slate-400">{getTranslation(config.language, 'showTrails')}</span>
           <button
             onClick={() => handleToggle('showTrails')}
             className={`flex items-center gap-1 px-3 py-1 rounded-lg text-sm transition-colors ${
@@ -264,12 +265,12 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
             }`}
           >
             {config.showTrails ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
-            {config.showTrails ? 'On' : 'Off'}
+            {config.showTrails ? getTranslation(config.language, 'on') : getTranslation(config.language, 'off')}
           </button>
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="text-sm text-slate-400">Show Forces</span>
+          <span className="text-sm text-slate-400">{getTranslation(config.language, 'showForces')}</span>
           <button
             onClick={() => handleToggle('showForces')}
             className={`flex items-center gap-1 px-3 py-1 rounded-lg text-sm transition-colors ${
@@ -279,7 +280,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
             }`}
           >
             {config.showForces ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
-            {config.showForces ? 'On' : 'Off'}
+            {config.showForces ? getTranslation(config.language, 'on') : getTranslation(config.language, 'off')}
           </button>
         </div>
       </div>

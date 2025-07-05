@@ -37,6 +37,7 @@ export interface SimulationConfig {
   showTrails: boolean;
   showForces: boolean;
   simulationMode: 'normal' | 'panic' | 'gathering';
+  language: 'en' | 'ja';
 }
 
 export interface SimulationStats {

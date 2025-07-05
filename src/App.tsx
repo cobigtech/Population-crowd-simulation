@@ -4,6 +4,7 @@ import { ControlPanel } from './components/ControlPanel';
 import { StatsPanel } from './components/StatsPanel';
 import { SimulationConfig, SimulationStats } from './types/simulation';
 import { Users } from 'lucide-react';
+import { getTranslation } from './utils/translations';
 
 const defaultConfig: SimulationConfig = {
   populationSize: 200,
@@ -17,7 +18,8 @@ const defaultConfig: SimulationConfig = {
   maxForce: 0.03,
   showTrails: true,
   showForces: false,
-  simulationMode: 'normal'
+  simulationMode: 'normal',
+  language: 'en'
 };
 
 const defaultStats: SimulationStats = {
@@ -60,15 +62,32 @@ function App() {
       {/* Header */}
       <header className="border-b border-slate-700/50 bg-slate-900/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-600 rounded-lg">
-              <Users className="w-10 h-10 text-white" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-blue-600 rounded-lg">
+                <Users className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-white">{getTranslation(config.language, 'title')}</h1>
+                <p className="text-slate-400 text-sm">
+                  {getTranslation(config.language, 'subtitle')}
+                </p>
+              </div>
             </div>
-            <div className='flex-row '>
-              <h1 className="text-4xl font-bold text-white">Population Crowd Simulation</h1>
-              <p className="text-slate-400 text-lg">
-                Interactive flocking behavior with realistic crowd dynamics
-              </p>
+            
+            {/* Language Selector */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-slate-400">{getTranslation(config.language, 'language')}:</span>
+              <button
+                onClick={() => setConfig({ ...config, language: config.language === 'en' ? 'ja' : 'en' })}
+                className={`px-3 py-1 rounded-lg text-sm transition-colors ${
+                  config.language === 'en'
+                    ? 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                    : 'bg-blue-600 text-white'
+                }`}
+              >
+                {config.language === 'en' ? getTranslation('en', 'english') : getTranslation('ja', 'japanese')}
+              </button>
             </div>
           </div>
         </div>
@@ -90,7 +109,7 @@ function App() {
           {/* Side Panel */}
           <div className="space-y-6 overflow-y-auto">
             {/* Stats Panel */}
-            <StatsPanel stats={stats} />
+            <StatsPanel stats={stats} language={config.language} />
 
             {/* Control Panel */}
             <ControlPanel
@@ -110,12 +129,12 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <p className="text-slate-400 text-sm">
-              Advanced crowd simulation with emergent behavior patterns
+              {getTranslation(config.language, 'footerDescription')}
             </p>
             <div className="flex items-center gap-4 text-xs text-slate-500">
-              <span>Population: {config.populationSize}</span>
-              <span>Mode: {config.simulationMode}</span>
-              <span>FPS: {stats.frameRate}</span>
+              <span>{getTranslation(config.language, 'population')}: {config.populationSize}</span>
+              <span>{getTranslation(config.language, 'mode')}: {getTranslation(config.language, config.simulationMode)}</span>
+              <span>{getTranslation(config.language, 'fps')}: {stats.frameRate}</span>
             </div>
           </div>
         </div>
