@@ -1,10 +1,10 @@
-import { useState, useCallback } from 'react';
-import { SimulationCanvas } from './components/SimulationCanvas';
-import { ControlPanel } from './components/ControlPanel';
-import { StatsPanel } from './components/StatsPanel';
-import { SimulationConfig, SimulationStats } from './types/simulation';
-import { Users } from 'lucide-react';
-import { getTranslation } from './utils/translations';
+import { useState, useCallback } from "react";
+import { SimulationCanvas } from "./components/SimulationCanvas";
+import { ControlPanel } from "./components/ControlPanel";
+import { StatsPanel } from "./components/StatsPanel";
+import { SimulationConfig, SimulationStats } from "./types/simulation";
+import { Users } from "lucide-react";
+import { getTranslation } from "./utils/translations";
 
 const defaultConfig: SimulationConfig = {
   populationSize: 200,
@@ -18,8 +18,8 @@ const defaultConfig: SimulationConfig = {
   maxForce: 0.03,
   showTrails: true,
   showForces: false,
-  simulationMode: 'normal',
-  language: 'en'
+  simulationMode: "normal",
+  language: "en",
 };
 
 const defaultStats: SimulationStats = {
@@ -27,7 +27,7 @@ const defaultStats: SimulationStats = {
   averageDensity: 0,
   clusterCount: 0,
   totalDistance: 0,
-  frameRate: 60
+  frameRate: 60,
 };
 
 function App() {
@@ -54,7 +54,7 @@ function App() {
 
   const handleClearObstacles = useCallback(() => {
     // This will be handled by the simulation engine
-    window.dispatchEvent(new CustomEvent('clearObstacles'));
+    window.dispatchEvent(new CustomEvent("clearObstacles"));
   }, []);
 
   return (
@@ -68,25 +68,33 @@ function App() {
                 <Users className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">{getTranslation(config.language, 'title')}</h1>
+                <h1 className="text-2xl font-bold text-white">
+                  {getTranslation(config.language, "title")}
+                </h1>
                 <p className="text-slate-400 text-sm">
-                  {getTranslation(config.language, 'subtitle')}
+                  {getTranslation(config.language, "subtitle")}
                 </p>
               </div>
             </div>
-            
+
             {/* Language Selector */}
             <div className="flex items-center gap-2">
-              <span className="text-sm text-slate-400">{getTranslation(config.language, 'language')}:</span>
               <button
-                onClick={() => setConfig({ ...config, language: config.language === 'en' ? 'ja' : 'en' })}
+                onClick={() =>
+                  setConfig({
+                    ...config,
+                    language: config.language === "en" ? "ja" : "en",
+                  })
+                }
                 className={`px-3 py-1 rounded-lg text-sm transition-colors ${
-                  config.language === 'en'
-                    ? 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                    : 'bg-blue-600 text-white'
+                  config.language === "en"
+                    ? "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                    : "bg-blue-600 text-white"
                 }`}
               >
-                {config.language === 'en' ? getTranslation('en', 'english') : getTranslation('ja', 'japanese')}
+                {config.language === "en"
+                  ? getTranslation("en", "english")
+                  : getTranslation("ja", "japanese")}
               </button>
             </div>
           </div>
@@ -129,12 +137,20 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <p className="text-slate-400 text-sm">
-              {getTranslation(config.language, 'footerDescription')}
+              {getTranslation(config.language, "footerDescription")}
             </p>
             <div className="flex items-center gap-4 text-xs text-slate-500">
-              <span>{getTranslation(config.language, 'population')}: {config.populationSize}</span>
-              <span>{getTranslation(config.language, 'mode')}: {getTranslation(config.language, config.simulationMode)}</span>
-              <span>{getTranslation(config.language, 'fps')}: {stats.frameRate}</span>
+              <span>
+                {getTranslation(config.language, "population")}:{" "}
+                {config.populationSize}
+              </span>
+              <span>
+                {getTranslation(config.language, "mode")}:{" "}
+                {getTranslation(config.language, config.simulationMode)}
+              </span>
+              <span>
+                {getTranslation(config.language, "fps")}: {stats.frameRate}
+              </span>
             </div>
           </div>
         </div>

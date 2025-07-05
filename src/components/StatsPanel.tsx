@@ -75,7 +75,7 @@ export const StatsPanel: React.FC<StatsPanelProps> = ({ stats, language }) => {
       <div className="mt-6 p-4 bg-slate-900/50 rounded-lg border border-slate-700/50">
         <h3 className="text-sm font-medium text-slate-300 mb-2">Performance</h3>
         <div className="flex items-center justify-between">
-          <span className="text-slate-400 text-sm">{getTranslation(language, 'frameRate')}</span>
+          <span className="text-slate-400 text-sm">Frame Rate</span>
           <span className="text-green-400 font-semibold">
             {stats.frameRate} FPS
           </span>
