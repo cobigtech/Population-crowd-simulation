@@ -218,7 +218,7 @@ export class SimulationEngine {
 
   private avoidBoundaries(agent: Agent): Vector2D {
     const margin = 50;
-    let steer = { x: 0, y: 0 };
+    const steer = { x: 0, y: 0 };
 
     if (agent.position.x < margin) {
       steer.x = (margin - agent.position.x) / margin;
@@ -299,8 +299,6 @@ export class SimulationEngine {
   public getStats() {
     const totalSpeed = this.agents.reduce((sum, agent) => sum + Vector.magnitude(agent.velocity), 0);
     const averageSpeed = totalSpeed / this.agents.length;
-    
-    // Calculate density (agents per unit area)
     const area = this.width * this.height;
     const density = this.agents.length / area * 10000; // per 100x100 area
     
