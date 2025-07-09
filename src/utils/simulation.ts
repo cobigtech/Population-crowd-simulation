@@ -16,7 +16,25 @@ export class SimulationEngine {
     this.initializeAgents();
   }
 
-
+  private initializeAgents(): void {
+    this.agents = [];
+    for (let i = 0; i < this.config.populationSize; i++) {
+      const agent: Agent = {
+        id: `agent-${i}`,
+        position: {
+          x: Math.random() * this.width,
+          y: Math.random() * this.height
+        },
+        velocity: Vector.random(Math.random() * 2),
+        acceleration: { x: 0, y: 0 },
+        maxSpeed: this.config.maxSpeed,
+        maxForce: this.config.maxForce,
+        radius: 3 + Math.random() * 2,
+        color: this.getAgentColor(),
+        age: Math.random() * 100,
+        energy: 50 + Math.random() * 50,
+        state: 'normal'
+      };
       this.agents.push(agent);
     }
   }
