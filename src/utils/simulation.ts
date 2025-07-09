@@ -19,12 +19,7 @@ export class SimulationEngine {
   private initializeAgents(): void {
     this.agents = [];
     for (let i = 0; i < this.config.populationSize; i++) {
-      const agent: Agent = {
-        id: `agent-${i}`,
-        position: {
-          x: Math.random() * this.width,
-          y: Math.random() * this.height
-        },
+
         velocity: Vector.random(Math.random() * 2),
         acceleration: { x: 0, y: 0 },
         maxSpeed: this.config.maxSpeed,
